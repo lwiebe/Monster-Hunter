@@ -3,7 +3,7 @@ from pytmx.util_pygame import load_pygame
 from os.path import join
 
 from sprites import Sprite, AnimatedSprite
-from entities import Player
+from entities import Player, Character
 from groups import AllSprites
 
 from support import *
@@ -44,11 +44,19 @@ class Game:
             
         # entities
         for obj in tmx_map.get_layer_by_name('Entities'):
-            if obj.name == 'Player' and obj.properties['pos'] == player_start_pos:
-                self.player = Player(
+            if obj.name == 'Player':
+                if obj.properties['pos'] == player_start_pos:
+                    self.player = Player(
+                        pos = (obj.x, obj.y), 
+                        frames = self.overworld_frames['characters']['player'], 
+                        groups = self.all_sprites,
+                        facing_direction = obj.properties['direction'])
+            else:
+                Character(
                     pos = (obj.x, obj.y), 
-                    frames = self.overworld_frames['characters']['player'], 
-                    groups = self.all_sprites)
+                    frames = self.overworld_frames['characters'][obj.properties['graphic']], 
+                    groups = self.all_sprites,
+                    facing_direction = obj.properties['direction'])
                 
         # water
         for obj in tmx_map.get_layer_by_name('Water'):

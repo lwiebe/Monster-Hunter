@@ -32,6 +32,14 @@ class Game:
 			7: Monster('Pouch', 3)
         }
         
+        self.dummy_monsters = {
+            0: Monster('Atrox', 12),
+			1: Monster('Sparchu', 15),
+			2: Monster('Gulfin', 19),
+			3: Monster('Jacana', 2),
+			4: Monster('Pouch', 3)
+        }
+        
         # groups
         self.all_sprites = AllSprites()
         self.collision_sprites = pygame.sprite.Group()
@@ -53,6 +61,7 @@ class Game:
         self.dialog_tree = None
         self.monster_index = MonsterIndex(self.player_monsters, self.fonts, self.monster_frames)
         self.index_open = False
+        self.battle = None
         
     def import_assets(self):
         self.tmx_maps = tmx_importer('data', 'maps')
@@ -207,7 +216,8 @@ class Game:
             
             # overlays
             if self.dialog_tree: self.dialog_tree.update()
-            if self.index_open: self.monster_index.update(dt)
+            if self.index_open:  self.monster_index.update(dt)
+            if self.battle:      self.battle.update(dt)
             
             self.tint_screen(dt)
             pygame.display.update()

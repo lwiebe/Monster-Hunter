@@ -26,22 +26,19 @@ class Game:
             0: Monster('Charmadillo', 30),
 			1: Monster('Friolera', 29),
 			2: Monster('Larvea', 3),
-			3: Monster('Atrox', 24),
-			4: Monster('Sparchu', 24),
-			5: Monster('Gulfin', 24),
-			6: Monster('Jacana', 2),
-			7: Monster('Pouch', 3),
-			8: Monster('Gulfin', 100),
-			9: Monster('Jacana', 100),
-			10: Monster('Pouch', 100)
+			# 3: Monster('Atrox', 24),
+			# 4: Monster('Sparchu', 24),
+			# 5: Monster('Gulfin', 24),
+			# 6: Monster('Jacana', 2),
+			# 7: Monster('Pouch', 3)
         }
         
         self.dummy_monsters = {
-            0: Monster('Atrox', 2),
-			1: Monster('Sparchu', 3),
-			2: Monster('Gulfin', 5),
-			3: Monster('Jacana', 2),
-			4: Monster('Pouch', 3)
+            0: Monster('Atrox', 5),
+			# 1: Monster('Sparchu', 3),
+			# 2: Monster('Gulfin', 3),
+			# 3: Monster('Jacana', 2),
+			# 4: Monster('Pouch', 3)
         }
         
         # groups
@@ -79,7 +76,8 @@ class Game:
         self.monster_frames = {
             'icons': import_folder_dict('graphics', 'icons'),
             'monsters': monster_importer(4,2,'graphics', 'monsters'),
-            'ui': import_folder_dict('graphics', 'ui')
+            'ui': import_folder_dict('graphics', 'ui'),
+            'attacks': attack_importer('graphics', 'attacks')
         }
         self.monster_frames['outlines'] = outline_creator(self.monster_frames['monsters'], 4)
         
